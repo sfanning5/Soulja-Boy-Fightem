@@ -224,7 +224,7 @@ label start_minigame:
 
             "Try again":
 
-                call start_minigame from _call_start_minigame_4
+                call start_minigame
 
             "Accept rightful defeat":
 

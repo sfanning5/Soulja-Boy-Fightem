@@ -10,7 +10,8 @@ define wins = 0
 
 label start:
 
-    scene bg_bedroom
+    scene bg_bedroom at truecenter:
+        zoom 1.7
 
     #MUSIC: Music coming from laptop starts here
 
@@ -21,7 +22,8 @@ label start:
     #ANIMATION: Eyes closed
     #MUSIC: Fades out here
 
-    scene bg_white
+    scene bg_white:
+        zoom 1.7
 
     #SOUND: Phone ringing
 
@@ -74,13 +76,19 @@ label start:
 
         "That sounds stupid":
 
+            $ minigame_duration = 12
+
             jump o1_1 #These numbers represent game 1 choice 1, the o stands for option
 
         "Bring it on!":
 
+            $ minigame_duration = 10
+
             jump o1_2 #This one represents game 1 choice 2 for example
 
         "What is a Swag Battle":
+
+            $ minigame_duration = 8
 
             jump o1_3
 
@@ -114,9 +122,15 @@ label o1_3:
 label game_1:
     #GAME: This is where the first game should take place, the following dialogue happens after the game
 
-    t "This is not real text, just a placeholder for the game"
+    call start_minigame from _call_start_minigame
 
-    jump win_1 #The game should jump to win if the player wins and lose if the player looses, the one after represents that this is the first game
+    if _return:
+
+        jump win_1 #The game should jump to win if the player wins and lose if the player looses, the one after represents that this is the first game
+
+    else:
+
+        jump lose_1
 
 label win_1:
 
@@ -150,9 +164,11 @@ label lose_1: #This technically wont show up until the game is implimented
 
 label pretty_boy_start:
 
-    scene bg_alley
+    scene bg_alley:
+        zoom 1.7
 
-    show ch_pretty
+    show ch_pretty at center:
+        zoom .2
 
     pb "It's ya boy, Pretty Boy Soulja Boy!"
 
@@ -190,12 +206,18 @@ label pretty_boy_start:
 
         "Sure, if you can handle not having your picture taken for long enough.":
 
+            $ minigame_duration = 18
+
             jump o2_1
         "May the most swag win!":
+
+            $ minigame_duration = 15
 
             jump o2_2
 
         "Ok, but only if I get to take your picture after.":
+
+            $ minigame_duration = 12
 
             jump o2_3
 
@@ -227,9 +249,15 @@ label o2_3:
 label game_2:
     #GAME: This is game 2
 
-    t "Placeholder text."
+    call start_minigame from _call_start_minigame_1
 
-    jump win_2 #jump lose_2 is not included but will be the jump when the player looses
+    if _return:
+
+        jump win_2
+
+    else:
+
+        jump lose_2
 
 label win_2:
 
@@ -261,9 +289,12 @@ label lose_2:
 
 label crank_that_start:
 
-    scene bg_club
+    scene bg_club:
+        zoom 1.5
 
-    show ch_crank
+    show ch_crank at truecenter:
+        zoom .7
+        yalign 0
 
     #MUSIC: Music with lyrics
     #ART: I don't know if Ren'Py would work with this stuff, but moving colored lights could be cool for this scene like its really at a club
@@ -278,12 +309,18 @@ label crank_that_start:
 
         "Isn't that your name?":
 
+            $ minigame_duration = 25
+
             jump o3_1
         "Yes.":
+
+            $ minigame_duration = 22
 
             jump o3_2
 
         "No.":
+
+            $ minigame_duration = 19
 
             jump o3_3
 
@@ -318,9 +355,15 @@ label o3_3:
 label game_3:
     #GAME: This is game 3
 
-    t "Placeholder text."
+    call start_minigame from _call_start_minigame_2
 
-    jump win_3 #jump lose_3 is not included but will be the jump when the player looses
+    if _return:
+
+        jump win_3
+
+    else:
+
+        jump lose_3
 
 label win_3:
 
@@ -356,9 +399,11 @@ label lose_3:
 
 label swag_start:
 
-    scene bg_space
+    scene bg_space at truecenter:
+        zoom 1.6
 
-    show ch_swag
+    show ch_swag at center:
+        zoom .513
 
     ss "So..."
 
@@ -386,12 +431,18 @@ label swag_start:
 
         "I have more swag then you ever will.":
 
+            $ minigame_duration = 35
+
             jump o4_1
         "I’m ready for the final Swag Battle.":
+
+            $ minigame_duration = 32
 
             jump o4_2
 
         "I like your chains.":
+
+            $ minigame_duration = 29
 
             jump o4_3
 
@@ -429,9 +480,15 @@ label o4_3:
 label game_4:
     #GAME: This is game 4
 
-    t "Placeholder text."
+    call start_minigame from _call_start_minigame_3
 
-    jump win_4 #jump lose_4 is not included but will be the jump when the player looses
+    if _return:
+
+        jump win_4 #jump lose_4 is not included but will be the jump when the player looses
+
+    else:
+
+        jump lose_4
 
 label win_4:
 
@@ -447,7 +504,8 @@ label win_4:
 
     ss "My swaaaaaaaagggggggg!"
 
-    scene bg_space
+    scene bg_space at truecenter:
+        zoom 1.6
 
     p "Hello?"
 
@@ -510,7 +568,8 @@ label o5_2:
 
     #ANIMATION: Teleport
 
-    scene bg_bedroom
+    scene bg_bedroom at truecenter:
+        zoom 1.7
 
     m "Goodnight sweetie, make sure you dont stay up too late listening to music."
 
@@ -520,7 +579,8 @@ label o5_2:
 
     t "I should probably turn off the music..."
 
-    scene bg_black
+    scene bg_black:
+        zoom 2
 
     t "and get to bed."
 
@@ -607,7 +667,7 @@ label o6_1:
 
     $ new_name_2 = renpy.input("You're new name will be _____ Soulja Boy, fill in the gap.")
 
-    $ new_name_2 = new_name.strip()
+    $ new_name_2 = new_name_2.strip()
 
     define np2 = Character("[new_name_2] Soulja Boy")
 
@@ -631,7 +691,8 @@ label o6_2:
 
     #ANIMATION: Teleport
 
-    scene bg_bedroom
+    scene bg_bedroom at truecenter:
+        zoom 1.7
 
     m "Goodnight sweetie, make sure you dont stay up too late listening to music."
 
@@ -641,7 +702,8 @@ label o6_2:
 
     t "I should probably turn off the music..."
 
-    scene bg_black
+    scene bg_black:
+        zoom 2
 
     t "and get to bed."
 
