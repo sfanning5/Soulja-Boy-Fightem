@@ -289,8 +289,8 @@ label lose_2:
 
 label crank_that_start:
 
-    scene bg_club:
-        zoom 1.5
+    scene bg_club at truecenter:
+        zoom 1.7
 
     show ch_crank at truecenter:
         zoom .7
