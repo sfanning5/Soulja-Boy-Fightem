@@ -1,31 +1,64 @@
 init python:
 
+    config.keymap["accessibility"].remove('K_a') # Removes "A" from the default keybind
+    config.keymap["director"].remove("d") # Removes "D" from the default keybind
+    config.keymap["screenshot"].remove("s") # Removes "S" from the default keybind
+
     import math
     import pygame
-
-    minigame_duration = 15
 
     defeat = False
     victory = False
 
-    player_pos = Vector2(-1, -1)
+    player_pos = Vector2(-1, -1) # Set to -1 and -1 so that the renderer knows to reposition the player at the start
     player_speed = 2.5
     projectile_speed = 1.6
-    projectiles_per_second = 3
 
+    # Variables that scale with difficulty:
+    minigame_duration = 17
+    projectiles_per_second = 3.6
+    projectile_types = 3
 
     dx = 0
     dy = 0
     player_controls = {
-        pygame.K_i : [0, -1, False],
-        pygame.K_k : [0, 1, False],
-        pygame.K_j : [-1, 0, False],
-        pygame.K_l : [1, 0, False]
+        pygame.K_w : [0, -1, False],
+        pygame.K_s : [0, 1, False],
+        pygame.K_a : [-1, 0, False],
+        pygame.K_d : [1, 0, False]
     }
 
     projectiles_spawned = 0
     projectiles = []
 
+    # Difficulty possibility chart:
+    # game 1:  0 1 2
+    # game 2:      2 3 4
+    # game 3:          4 5 6
+    # game 4:              6 7 8
+
+    # Sets the minigame difficulty, represented by a number 0-8. 8 is the hardest.
+    def set_difficulty(difficulty):
+        global minigame_duration
+        global projectiles_per_second
+        global projectile_types
+
+        minigame_duration = 8 + 1.2 * difficulty # Ranges from 8 - 17.6 seconds
+        projectiles_per_second = 3 + .1 * difficulty # Ranges from 3 to 3.8 projectiles per second
+
+        if difficulty >= 6:
+            projectile_types = 3
+
+        elif difficulty >= 3:
+            projectile_types = 2
+
+        else:
+            projectile_types = 1
+
+    set_difficulty(7) # Sets default difficulty, this is only used for testing
+
+    # Resets the minigame data so that the game can be played again
+    # this could be made much better if i bothered to learn reflection in python.
     def reset_data():
         global victory
         global defeat
@@ -33,6 +66,7 @@ init python:
         global projectiles
         global dx
         global dy
+        global player_pos
         global player_controls
 
         defeat = False
@@ -41,12 +75,13 @@ init python:
         projectiles = []
         dx = 0
         dy = 0
+        player_pos = Vector2(-1, -1)
 
         player_controls = {
-            pygame.K_i : [0, -1, False],
-            pygame.K_k : [0, 1, False],
-            pygame.K_j : [-1, 0, False],
-            pygame.K_l : [1, 0, False]
+            pygame.K_w : [0, -1, False],
+            pygame.K_s : [0, 1, False],
+            pygame.K_a : [-1, 0, False],
+            pygame.K_d : [1, 0, False]
         }
 
     def countdown(st, at, length):
@@ -62,25 +97,23 @@ init python:
 
         return Text("{alpha=0.5} " + ("%.1f" % remaining), color="#FFD700", size=200, bold=True), .1
 
-    alternating = True
+    # Creates a projectile of the given type. In this case, type is represented by a number
+    def create_projectile_of_type(type):
+        # REALLY wish python had a switch statement right now
+        if type == 0:
+            return Projectile()
+        elif type == 1:
+            return HorizontalProjectile()
+        elif type == 2:
+            return DiagonalProjectile()
+
+    # Spawns a projectile at a random location, intakes the width and height of the render
     def spawn_projectile(width, height):
         import random
         global projectiles_spawned
-        global alternating
 
-        PADDING = 10
-        WIDTH_VARIATION = width / 4
-
-        new_proj = Projectile()
-
-        if alternating:
-            new_proj.position.y = -PADDING
-        else:
-            new_proj.position.y = height + PADDING
-            new_proj.position_change.y *= -1
-        alternating = not alternating
-
-        new_proj.position.x = width/2 + random.random() * WIDTH_VARIATION * random.choice([-1, 1])
+        new_proj = create_projectile_of_type(int(random.random() * projectile_types)) # Creates a projectile of a random type
+        new_proj.generate_spawn_position(width, height)
 
         projectiles.append(new_proj)
         projectiles_spawned += 1
@@ -112,7 +145,8 @@ init python:
             # Renders the given projectile
             def render_projectile(projectile):
 
-                proj_render = renpy.render(projectile.img, width, width, st, at)
+                t = Transform(child=projectile.img, alpha=projectile.get_alpha_value()) # Sets the correct alpha value
+                proj_render = renpy.render(t, width, width, st, at)
                 sizex, sizey = proj_render.get_size()
 
                 if not projectile.zoomed: # Ensures the projectile is only zoomed once
@@ -206,7 +240,7 @@ label start_minigame:
 
     "{b}{i}1{/b}{/i}"
 
-    "{b}{i}GO!!!{/b}{/i} (use IJKL to move)"
+    "{b}{i}GO!!!{/b}{/i} (use WASD to move)"
 
     call screen minigame(minigame_duration)
 

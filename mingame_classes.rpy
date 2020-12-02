@@ -17,15 +17,112 @@ init python:
             return Vector2(self.x + vector2.x, self.y + vector2.y)
 
     class Projectile():
+        alternating = False
+        current_spawn_x = 0
+        VERTICAL_PADDING = 10
+        HORIZONTAL_PADDING = 150
 
         def __init__(self):
             self.position = Vector2(200, -200)
+            self.start_position = self.position
             self.position_change = Vector2(0, 1) # The change in position every frame
             self.position_change.x *= projectile_speed
             self.position_change.y *= projectile_speed
             self.img = renpy.displayable("Props/pr_placeholderProjectile.png")
             self.zoomed = False
             self.zoom_amount = 1
+            self.fade_distance = 0 # The distance from the start at which the fade in animation will end
 
         def move(self):
             self.position = self.position.add_to(self.position_change)
+
+        # calculates what the alpha value of the projectile should be (this creates the fade in animation)
+        def get_alpha_value(self):
+
+            if self.fade_distance == 0: # Avoids divide by 0 errors
+                return 1
+
+            a = self.position.distance(self.start_position) / self.fade_distance
+            if a > 1:
+                a = 1
+            return a
+
+        # Returns the x position that the projectile should spawn at (making sure to distribute projectiles evenly)
+        def get_spawn_x(self, max_x, variation):
+            import random
+
+            Projectile.current_spawn_x += random.random() * variation
+            Projectile.current_spawn_x %= max_x # Keeps in correct range
+            return Projectile.current_spawn_x
+
+        def get_alternating(self):
+            outp = Projectile.alternating
+            Projectile.alternating = not Projectile.alternating
+            return outp
+
+        # Determines and sets the spawn position of this projectile
+        def generate_spawn_position(self, width, height):
+            import random
+
+            X_VARIATION = width / 4
+
+            new_pos = Vector2(0, 0)
+
+            if self.get_alternating():
+                new_pos.y = -Projectile.VERTICAL_PADDING
+            else:
+                new_pos.y = height + Projectile.VERTICAL_PADDING
+                self.position_change.y *= -1
+
+            new_pos.x = width/4 + self.get_spawn_x(width/2, X_VARIATION)
+
+            self.position = new_pos
+            self.start_position = self.position
+
+    class HorizontalProjectile(Projectile):
+        current_spawn_y = 0
+        alternating = False
+
+        def __init__(self):
+            Projectile.__init__(self)
+            self.position_change = Vector2(1, 0) # The change in position every frame
+            self.position_change.x *= projectile_speed
+            self.position_change.y *= projectile_speed
+            self.fade_distance = 100
+
+        # Overrides this function to ensure that this projectile type doesn't share an alternating value with standard projectiles
+        def get_alternating(self):
+            outp = HorizontalProjectile.alternating
+            HorizontalProjectile.alternating = not HorizontalProjectile.alternating
+            return outp
+
+        # Overrides this function to return the correct y position instead
+        def get_spawn_x(self, max_y, variation):
+            import random
+
+            HorizontalProjectile.current_spawn_y += random.random() * variation
+            HorizontalProjectile.current_spawn_y %= max_y # Keeps in correct range
+            return HorizontalProjectile.current_spawn_y
+
+        # Determines and sets the spawn position of this projectile
+        def generate_spawn_position(self, width, height):
+            Projectile.generate_spawn_position(self, width, height)
+            self.position = Vector2(width/4 - Projectile.HORIZONTAL_PADDING if self.position.y < 0 else 3 * width/4 + Projectile.HORIZONTAL_PADDING, self.position.x - width/4)
+            if self.position.x > width/2:
+                self.position_change.x *= -1
+
+            self.start_position = self.position
+
+    class DiagonalProjectile(Projectile):
+
+        def __init__(self):
+            Projectile.__init__(self)
+            self.position_change = Vector2(1, 1) # The change in position every frame
+            self.position_change.x *= projectile_speed
+            self.position_change.y *= projectile_speed
+
+        def generate_spawn_position(self, width, height):
+            Projectile.generate_spawn_position(self, width, height)
+
+            if self.position.x > width/2:
+                self.position_change.x *= -1

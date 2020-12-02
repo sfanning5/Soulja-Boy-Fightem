@@ -76,19 +76,19 @@ label start:
 
         "That sounds stupid":
 
-            $ minigame_duration = 12
+            $ set_difficulty(2)
 
             jump o1_1 #These numbers represent game 1 choice 1, the o stands for option
 
         "Bring it on!":
 
-            $ minigame_duration = 10
+            $ set_difficulty(1)
 
             jump o1_2 #This one represents game 1 choice 2 for example
 
         "What is a Swag Battle":
 
-            $ minigame_duration = 8
+            $ set_difficulty(0)
 
             jump o1_3
 
@@ -206,18 +206,18 @@ label pretty_boy_start:
 
         "Sure, if you can handle not having your picture taken for long enough.":
 
-            $ minigame_duration = 18
+            $ set_difficulty(4)
 
             jump o2_1
         "May the most swag win!":
 
-            $ minigame_duration = 15
+            $ set_difficulty(3)
 
             jump o2_2
 
         "Ok, but only if I get to take your picture after.":
 
-            $ minigame_duration = 12
+            $ set_difficulty(2)
 
             jump o2_3
 
@@ -309,18 +309,18 @@ label crank_that_start:
 
         "Isn't that your name?":
 
-            $ minigame_duration = 25
+            $ set_difficulty(6)
 
             jump o3_1
         "Yes.":
 
-            $ minigame_duration = 22
+            $ set_difficulty(5)
 
             jump o3_2
 
         "No.":
 
-            $ minigame_duration = 19
+            $ set_difficulty(4)
 
             jump o3_3
 
@@ -431,18 +431,18 @@ label swag_start:
 
         "I have more swag then you ever will.":
 
-            $ minigame_duration = 35
+            $ set_difficulty(8)
 
             jump o4_1
         "I’m ready for the final Swag Battle.":
 
-            $ minigame_duration = 32
+            $ set_difficulty(7)
 
             jump o4_2
 
         "I like your chains.":
 
-            $ minigame_duration = 29
+            $ set_difficulty(6)
 
             jump o4_3
 
@@ -484,7 +484,7 @@ label game_4:
 
     if _return:
 
-        jump win_4 #jump lose_4 is not included but will be the jump when the player looses
+        jump win_4
 
     else:
 
