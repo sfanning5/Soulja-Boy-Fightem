@@ -145,13 +145,9 @@ init python:
             # Renders the given projectile
             def render_projectile(projectile):
 
-                t = Transform(child=projectile.img, alpha=projectile.get_alpha_value()) # Sets the correct alpha value
+                t = Transform(child=projectile.img, alpha=projectile.get_alpha_value(), xanchor=0.5, yanchor=0.5, xzoom=projectile.zoom_amount, yzoom=projectile.zoom_amount, rotate=projectile.rotation)
                 proj_render = renpy.render(t, width, width, st, at)
                 sizex, sizey = proj_render.get_size()
-
-                if not projectile.zoomed: # Ensures the projectile is only zoomed once
-                    proj_render.zoom(projectile.zoom_amount, projectile.zoom_amount)
-                    projectile.zoomed = True
 
                 render.blit(proj_render, (projectile.position.x - sizex/2, projectile.position.y - sizey/2))
 
@@ -161,7 +157,8 @@ init python:
                 render_projectile(projectile)
 
                 # Checks for collisions
-                if projectile.position.distance(player_pos) < 75:
+                COLLISION_DISTANCE = 65
+                if projectile.position.distance(player_pos) < COLLISION_DISTANCE:
                     projectile.position_change = Vector2(0, 0)
                     defeat = True
                     renpy.timeout(0)
@@ -182,7 +179,8 @@ init python:
             elif player_pos.y > height - VERTICAL_PADDING:
                 player_pos.y = height - VERTICAL_PADDING
 
-            pl = renpy.render(self.player_image, width, width, st, at)
+            PLAYER_ZOOM = 0.8
+            pl = renpy.render(Transform(child=self.player_image, xanchor=0.5, yanchor=0.5, xzoom=PLAYER_ZOOM, yzoom=PLAYER_ZOOM), width, width, st, at)
 
             playersize_x, playersize_y = pl.get_size()
             render.blit(pl, (player_pos.x - playersize_x/2, player_pos.y - playersize_y/2))

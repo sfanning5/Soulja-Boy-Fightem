@@ -24,17 +24,25 @@ init python:
 
         def __init__(self):
             self.position = Vector2(200, -200)
+            self.rotation = 0 # This projectile's rotation in degrees
+            self.rotation_speed = self.determine_rotation_speed() # The change in rotation every frame
             self.start_position = self.position
             self.position_change = Vector2(0, 1) # The change in position every frame
             self.position_change.x *= projectile_speed
             self.position_change.y *= projectile_speed
-            self.img = renpy.displayable("Props/pr_placeholderProjectile.png")
-            self.zoomed = False
-            self.zoom_amount = 1
+            self.img = renpy.displayable("Props/pr_souljaCoin.png")
+            self.zoom_amount = .14
             self.fade_distance = 0 # The distance from the start at which the fade in animation will end
+
+        def determine_rotation_speed(self):
+            import random
+            speed = 1.5 + random.random()
+            speed *= random.choice([1, -1])
+            return speed
 
         def move(self):
             self.position = self.position.add_to(self.position_change)
+            self.rotation += self.rotation_speed
 
         # calculates what the alpha value of the projectile should be (this creates the fade in animation)
         def get_alpha_value(self):

@@ -22,8 +22,8 @@ label start:
     #ANIMATION: Eyes closed
     #MUSIC: Fades out here
 
-    scene bg_white:
-        zoom 1.7
+    scene bg_white at truecenter:
+        zoom 1
 
     #SOUND: Phone ringing
 
