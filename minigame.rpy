@@ -211,7 +211,7 @@ init python:
             render.blit(pl, (player_pos.x - playersize_x/2, player_pos.y - playersize_y/2))
 
 
-            renpy.redraw(self, .1)
+            renpy.redraw(self, 0)
             return render
 
 
