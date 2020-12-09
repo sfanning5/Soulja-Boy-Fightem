@@ -12,6 +12,7 @@ label start:
 
     scene bg_bedroom at truecenter:
         zoom 1.7
+    with dissolve
 
     #MUSIC: Music coming from laptop starts here
 
@@ -24,6 +25,7 @@ label start:
 
     scene bg_white at truecenter:
         zoom 1
+    with dissolve
 
     #SOUND: Phone ringing
 
@@ -34,7 +36,8 @@ label start:
     #SOUND: Phone stops ringing
     #MUSIC: Instumental music plays
 
-    show ch_distance
+    show ch_distance at left:
+    with dissolve
 
     ld "Looks like we have our next challenger!"
 
@@ -167,6 +170,7 @@ label pretty_boy_start:
 
     show ch_pretty at center:
         zoom .2
+    with dissolve
 
     pb "It's ya boy, Pretty Boy Soulja Boy!"
 
@@ -293,6 +297,7 @@ label crank_that_start:
     show ch_crank at truecenter:
         zoom .7
         yalign 0
+    with dissolve
 
     #MUSIC: Music with lyrics
     #ART: I don't know if Ren'Py would work with this stuff, but moving colored lights could be cool for this scene like its really at a club
@@ -404,9 +409,10 @@ label Swag_start:
 
     show ch_swag at center:
         zoom .513
+    with dissolve
 
     t "{i} Wow he is so big he doesnt even fit on screen. {/i}"
-    
+
     ss "So..."
 
     ss "You've finally arrived."
@@ -510,6 +516,7 @@ label win_4:
 
     scene bg_space at truecenter:
         zoom 1.6
+    with dissolve
 
     p "Hello?"
 
@@ -574,6 +581,7 @@ label o5_2:
 
     scene bg_bedroom at truecenter:
         zoom 1.7
+    with dissolve
 
     m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
@@ -585,6 +593,7 @@ label o5_2:
 
     scene bg_black:
         zoom 2
+    with Dissolve (5)
 
     t "{i}and get to bed.{/i}"
 
@@ -710,6 +719,7 @@ label o6_2:
 
     scene bg_black:
         zoom 2
+    with Dissolve (5)
 
     t "{i}and get to bed.{/i}"
 
