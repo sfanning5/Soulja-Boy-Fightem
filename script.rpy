@@ -36,11 +36,11 @@ label start:
 
     show ch_distance
 
-    ld "It's the next challanger!"
+    ld "Looks like we have our next challenger!"
 
     t "What is happening?!"
 
-    ld "You look confused, what's your name?"
+    ld "You look confused. What's your name?"
 
     $ player_name = renpy.input("What is your name?")
 
@@ -50,11 +50,11 @@ label start:
 
     p "My name is [player_name]"
 
-    ld "Welcome to Soulja Boy World [player_name]"
+    ld "Well then [player_name], welcome to Soulja Boy World"
 
     p "Soulja Boy World? You mean like THE Soulja Boy?!"
 
-    ld "Not just one, there are many of us here in Soulja Boy World."
+    ld "Not just one; there are many of us here in Soulja Boy World."
 
     ld "Even you could be a Soulja Boy"
 
@@ -62,13 +62,11 @@ label start:
 
     p "Swag Soulja Boy?"
 
-    ld "He is the ultimate Soulja Boy, the one with the most swag."
-
-    ld "But there is only one way to reach him..."
+    ld "He is the ultimate Soulja Boy, but there is only one way to reach him..."
 
     #ART: Zoom in
 
-    ld "To fight in a SWAG BATTLE!"
+    ld "To fight in a Swag BATTLE!"
 
     #Art: Zoom out
 
@@ -97,7 +95,7 @@ label o1_1:
     p "That sounds stupid."
 
     #ART: Eyes glow
-    ld "Oh does it now."
+    ld "Oh, is it now?"
 
     jump game_1
 
@@ -113,7 +111,7 @@ label o1_3:
 
     p "What is a Swag Battle?"
 
-    ld "It's the way we figure out who is the most swag in this world."
+    ld "It's the way we figure out who is the most Swag in this world."
 
     ld "Now lets begin!"
 
@@ -150,11 +148,11 @@ label win_1:
 
 label lose_1: #This technically wont show up until the game is implimented
 
-    ld "Thats not a good look kid."
+    ld "That's not a good look kid."
 
-    ld "Still, that was only your first swag battle."
+    ld "Still, that was only your first Swag battle."
 
-    ld "You better do well in the next one though."
+    ld "I'm sure you'll better do well in the next one."
 
     p "What do you mean the next o-"
 
@@ -181,18 +179,18 @@ label pretty_boy_start:
 
     pb "Trying to photobomb me!?"
 
-    p "No, I just got here, I have no idea what's going on."
+    p "No, I just got here. I have no idea what's going on."
 
     #Art: Back up
 
     pb "Thats cool, thats cool..."
 
-    pb "Well this is my domain, so if you wanna be here you gotta fight me in a swag battle."
+    pb "Well this is my domain, so if you wanna be here you gotta fight me in a Swag battle."
 
     #ART: pb goes to the side of the screen for a quick picture, then goes back to the center
     #SOUND: Camera flash sound effect
 
-    pb "You do know what a Swag Battle is don't you?"
+    pb "You do know what a Swag Battle is, don't you?"
 
     p "Yea, I just fought Long Distance Soulja Boy."
 
@@ -209,7 +207,7 @@ label pretty_boy_start:
             $ set_difficulty(4)
 
             jump o2_1
-        "May the most swag win!":
+        "May the most Swag win!":
 
             $ set_difficulty(3)
 
@@ -232,7 +230,7 @@ label o2_1:
 
 label o2_2:
 
-    p "May the most swag win!"
+    p "May the most Swag win!"
 
     pb "Don't worry, I will."
 
@@ -263,7 +261,7 @@ label win_2:
 
     $ wins += 1
 
-    pb "Looks like you do have the most swag..."
+    pb "Looks like you do have the most Swag..."
 
     pb "But before you go, one last picture!"
 
@@ -279,7 +277,7 @@ label lose_2:
 
     pb "Another win for Pretty Boy Soulja Boy!"
 
-    pb "Get over here, I need a picture with my opponent!"
+    pb "Get over here; I need a picture with my opponent!"
 
     #ART: White camera flash
     #SOUND: Camera flash sound effect
@@ -299,7 +297,7 @@ label crank_that_start:
     #MUSIC: Music with lyrics
     #ART: I don't know if Ren'Py would work with this stuff, but moving colored lights could be cool for this scene like its really at a club
 
-    ct "Welcome to Superman, my club and my domain."
+    ct "Welcome to Superman: my club and my domain."
 
     #ART: Zoom in
 
@@ -377,27 +375,27 @@ label win_3:
 
     #ART: Zoom in
 
-    ct "and the most swag."
+    ct "and the most Swag."
 
     #Animation: Teleport
 
-    jump swag_start
+    jump Swag_start
 
 label lose_3:
 
-    ct "You're moves aren't that slick. I don't know if you have what it takes."
+    ct "Your moves aren't slick. I don't know if you have what it takes...."
 
-    ct "I've gotta send you up though, to Swag Soulja Boy, the last of us Soulja Boys..."
+    ct "but I gotta send you up to the Swag Soulja Boy, the last of us Soulja Boys..."
 
     #ART: Zoom in
 
-    ct "and the most swag."
+    ct "with the most Swag."
 
     #Animation: Teleport
 
-    jump swag_start
+    jump Swag_start
 
-label swag_start:
+label Swag_start:
 
     scene bg_space at truecenter:
         zoom 1.6
@@ -413,13 +411,13 @@ label swag_start:
 
     ss "These chains I have collected from Soulja Boys all over."
 
-    ss "I gain swag from Soulja boys I defeat in swag battles."
+    ss "I gain Swag from Soulja boys I defeat in Swag battles."
 
     ss "But the thing is…"
 
     #ART: Zoom in
 
-    ss "So do you"
+    ss "So do you."
 
     #ART: Back up
 
@@ -429,7 +427,7 @@ label swag_start:
 
     menu: #The three choices will go hard, medium, then easy for game difficulty
 
-        "I have more swag then you ever will.":
+        "I have more Swag then you ever will.":
 
             $ set_difficulty(8)
 
@@ -448,7 +446,7 @@ label swag_start:
 
 label o4_1:
 
-    p "I have more swag then you ever will."
+    p "I have more Swag then you ever will."
 
     #ART: Eyes glow
     ss "I see how it is…"
@@ -471,7 +469,7 @@ label o4_3:
 
     p "I like your chains."
 
-    ss "I see you understand proper swag, this is good"
+    ss "I see you understand proper Swag, this is good."
 
     ss "But now, we must do Swag Battle!"
 
@@ -515,7 +513,7 @@ label win_4:
 
     p "Who are you?"
 
-    q "I am nowhere and I am everywhere..."
+    q "I am nowhere, and I am everywhere..."
 
     s "I am SWAG, the force of Swag that controls this world."
 
@@ -523,9 +521,9 @@ label win_4:
 
     s "You may destroy it."
 
-    s "You may leave it, and return home."
+    s "You may leave it and return home."
 
-    s "Or, if you posses enough swag, you may rule it, as the next Swag Soulja Boy."
+    s "Or, if you posses enough Swag, you may rule it as the next Swag Soulja Boy."
 
     s "The choice is yours."
 
@@ -594,7 +592,7 @@ label o5_3:
 
         s "You have conquered all Soulja boys who stood in your path."
 
-        s "You truly are the most swag of all Soulja Boys."
+        s "You truly are the most Swag of all Soulja Boys."
 
         s "If you are to become ruler of this world, you must have a title."
 
@@ -610,7 +608,7 @@ label o5_3:
 
         s "This is good"
 
-        s "You shall rule over this world as the most swag of all Soulja Boys."
+        s "You shall rule over this world as the most Swag of all Soulja Boys."
 
         s "Are you ready Swag [new_name] Soulja Boy?"
 
@@ -618,7 +616,7 @@ label o5_3:
 
     else:
 
-        s "You do not posses enough swag."
+        s "You do not posses enough Swag."
 
         menu:
 
@@ -637,7 +635,7 @@ label lose_4:
 
     ss "I have triumphed once again!"
 
-    ss "However, your swag you possess is rare, and should not be wasted."
+    ss "However, your Swag you possess is rare, and should not be wasted."
 
     ss "I shall present you with a choice, you may return to your world"
 
@@ -659,7 +657,7 @@ label lose_4:
 
 label o6_1:
 
-    ss "A good choice, I would not have liked seeing your swag go to waste."
+    ss "A good choice, I would not have liked seeing your Swag go to waste."
 
     ss "Before I send you back down to Soulja Boy world, you must have a title."
 
@@ -687,7 +685,7 @@ label o6_2:
 
     ss "I see..."
 
-    ss "While I will be sad to see your swag go, I will stay true to my word."
+    ss "While I will be sad to see your Swag go, I will stay true to my word."
 
     #ANIMATION: Teleport
 
