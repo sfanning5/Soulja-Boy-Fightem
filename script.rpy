@@ -405,6 +405,8 @@ label Swag_start:
     show ch_swag at center:
         zoom .513
 
+    t "{i} Wow he is so big he doesnt even fit on screen. {/i}"
+    
     ss "So..."
 
     ss "You've finally arrived."
