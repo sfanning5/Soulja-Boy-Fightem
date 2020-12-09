@@ -15,7 +15,7 @@ label start:
 
     #MUSIC: Music coming from laptop starts here
 
-    m "Goodnight sweetie, make sure you dont stay up too late listening to music."
+    m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
     t "I better get to bed soon."
 
@@ -72,7 +72,7 @@ label start:
 
     menu: #The three choices will go hard, medium, then easy for game difficulty
 
-        "That sounds stupid":
+        "That sounds stupid.":
 
             $ set_difficulty(2)
 
@@ -84,7 +84,7 @@ label start:
 
             jump o1_2 #This one represents game 1 choice 2 for example
 
-        "What is a Swag Battle":
+        "What is a Swag Battle.":
 
             $ set_difficulty(0)
 
@@ -529,14 +529,14 @@ label win_4:
 
     menu:
 
-        "Destroy Soulja Boy World":
+        "Destroy Soulja Boy World.":
 
             jump o5_1
-        "Return home":
+        "Return home.":
 
             jump o5_2
 
-        "Become the next Swag Soulja Boy":
+        "Become the next Swag Soulja Boy.":
 
             jump o5_3
 
@@ -647,11 +647,11 @@ label lose_4:
 
     menu:
 
-        "Stay in Soulja Boy World":
+        "Stay in Soulja Boy World.":
 
             jump o6_1
 
-        "Return home":
+        "Return home.":
 
             jump o6_2
 
