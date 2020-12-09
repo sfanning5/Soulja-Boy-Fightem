@@ -27,7 +27,7 @@ label start:
         zoom 1
     with dissolve
 
-    #SOUND: Phone ringing
+    play sound mu_ring
 
     t "{i}Where am I?{/i}"
 
@@ -36,7 +36,7 @@ label start:
     #SOUND: Phone stops ringing
     #MUSIC: Instumental music plays
 
-    show ch_distance at left:
+    show ch_distance at left
     with dissolve
 
     ld "Looks like we have our next challenger!"
@@ -174,9 +174,6 @@ label pretty_boy_start:
 
     pb "It's ya boy, Pretty Boy Soulja Boy!"
 
-    #ART: Pretty boy walks back and forth, white flashes and camera sounds playing a few times
-    #SOUND: Camera flash sound effects
-
     pb "What are you doing in my domain? Trying to cramp my style?"
 
     #ART: Zoom in
@@ -270,7 +267,7 @@ label win_2:
     pb "But before you go, one last picture!"
 
     #ART: White camera flash
-    #SOUND: Camera flash sound effect
+    play sound mu_camera
     #MUSIC: Music fades out
 
     jump crank_that_start
@@ -284,7 +281,7 @@ label lose_2:
     pb "Get over here; I need a picture with my opponent!"
 
     #ART: White camera flash
-    #SOUND: Camera flash sound effect
+    play sound mu_camera
     #MUSIC: Music fades out
 
     jump crank_that_start
@@ -333,7 +330,7 @@ label o3_1:
 
     #ART: Eyes glow
     ct "Yes it is, now watch me YUUUAA!"
-    #SOUND: Youuuuuu sound effect
+    play sound mu_you
 
     jump game_3
 
@@ -342,7 +339,7 @@ label o3_2:
     p "Yes."
 
     ct "Good, now watch me YUUUAA!"
-    #SOUND: Youuuuuu sound effect
+    play sound mu_you
 
     jump game_3
 
@@ -353,7 +350,7 @@ label o3_3:
     ct "You don’t?"
 
     ct "Well I can teach you, now watch me YUUUAA!"
-    #SOUND: Youuuuuu sound effect
+    play sound mu_you
 
     jump game_3
 
@@ -411,7 +408,7 @@ label Swag_start:
         zoom .513
     with dissolve
 
-    t "{i} Wow he is so big he doesnt even fit on screen. {/i}"
+    t "{i} Wow he is so big he doesn't even fit on screen. {/i}"
 
     ss "So..."
 
@@ -562,7 +559,7 @@ label o5_1:
     s "I will be sorry to see this world go."
 
     #ART: White flash
-    #SOUND: Explosion sound effect
+    play sound mu_explode
     #ART: Fade to black
 
     scene bg_black
