@@ -279,11 +279,11 @@ label start_minigame:
 
         menu: #The three choices will go hard, medium, then easy for game difficulty
 
-            "Try again":
+            "Try again.":
 
                 call start_minigame from _call_start_minigame_4
 
-            "Accept rightful defeat":
+            "Accept rightful defeat.":
 
                 return False
 

@@ -17,7 +17,7 @@ label start:
 
     m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
-    t "I better get to bed soon."
+    t "{i}I better get to bed soon.{/i}"
 
     #ANIMATION: Eyes closed
     #MUSIC: Fades out here
@@ -27,9 +27,9 @@ label start:
 
     #SOUND: Phone ringing
 
-    t "Where am I?"
+    t "{i}Where am I?{/i}"
 
-    t "I guess the phone is for me."
+    t "{i}I guess the phone is for me.{/i}"
 
     #SOUND: Phone stops ringing
     #MUSIC: Instumental music plays
@@ -38,7 +38,7 @@ label start:
 
     ld "Looks like we have our next challenger!"
 
-    t "What is happening?!"
+    t "{i}What is happening?!{/i}"
 
     ld "You look confused. What's your name?"
 
@@ -48,25 +48,25 @@ label start:
 
     define p = Character("[player_name]")
 
-    p "My name is [player_name]"
+    p "My name is [player_name]."
 
-    ld "Well then [player_name], welcome to Soulja Boy World"
+    ld "Well then [player_name], welcome to Soulja Boy World."
 
     p "Soulja Boy World? You mean like THE Soulja Boy?!"
 
     ld "Not just one; there are many of us here in Soulja Boy World."
 
-    ld "Even you could be a Soulja Boy"
+    ld "Even you could be a Soulja Boy."
 
     ld "Maybe even the next Swag Soulja Boy..."
 
     p "Swag Soulja Boy?"
 
-    ld "He is the ultimate Soulja Boy, but there is only one way to reach him..."
+    ld "He is the ultimate Soulja Boy, but there is only one way \nto reach him..."
 
     #ART: Zoom in
 
-    ld "To fight in a Swag BATTLE!"
+    ld "To fight in a Swag Battle!"
 
     #Art: Zoom out
 
@@ -84,7 +84,7 @@ label start:
 
             jump o1_2 #This one represents game 1 choice 2 for example
 
-        "What is a Swag Battle.":
+        "What is a Swag Battle?":
 
             $ set_difficulty(0)
 
@@ -113,7 +113,7 @@ label o1_3:
 
     ld "It's the way we figure out who is the most Swag in this world."
 
-    ld "Now lets begin!"
+    ld "Now let's begin!"
 
     jump game_1
 
@@ -150,7 +150,7 @@ label lose_1: #This technically wont show up until the game is implimented
 
     ld "That's not a good look kid."
 
-    ld "Still, that was only your first Swag battle."
+    ld "Still, that was only your first Swag Battle."
 
     ld "I'm sure you'll better do well in the next one."
 
@@ -183,9 +183,9 @@ label pretty_boy_start:
 
     #Art: Back up
 
-    pb "Thats cool, thats cool..."
+    pb "That's cool, that's cool..."
 
-    pb "Well this is my domain, so if you wanna be here you gotta fight me in a Swag battle."
+    pb "Well this is my domain, so if you wanna be here you gotta fight me in a Swag Battle."
 
     #ART: pb goes to the side of the screen for a quick picture, then goes back to the center
     #SOUND: Camera flash sound effect
@@ -221,10 +221,10 @@ label pretty_boy_start:
 
 label o2_1:
 
-    p "Sure, if you can handle not having your picture taken for long enough."
+    p "Sure, if you can handle not having your picture taken \nfor long enough."
 
     #ART: Eyes glow
-    pb "Oh it is on!"
+    pb "Oh, it is on!"
 
     jump game_2
 
@@ -240,7 +240,7 @@ label o2_3:
 
     p "Ok, but only if I get to take your picture after."
 
-    pb "Totally! I can sign it for you too!"
+    pb "Totally! I can sign it for you, too!"
 
     jump game_2
 
@@ -345,7 +345,9 @@ label o3_3:
 
     p "No."
 
-    ct "You don’t, well I can teach you, now watch me YUUUAA!"
+    ct "You don’t?"
+
+    ct "Well I can teach you, now watch me YUUUAA!"
     #SOUND: Youuuuuu sound effect
 
     jump game_3
@@ -375,7 +377,7 @@ label win_3:
 
     #ART: Zoom in
 
-    ct "and the most Swag."
+    ct "...and the most Swag."
 
     #Animation: Teleport
 
@@ -385,11 +387,11 @@ label lose_3:
 
     ct "Your moves aren't slick. I don't know if you have what it takes...."
 
-    ct "but I gotta send you up to the Swag Soulja Boy, the last of us Soulja Boys..."
+    ct "...but I gotta send you up to the Swag Soulja Boy, the last of us Soulja Boys..."
 
     #ART: Zoom in
 
-    ct "with the most Swag."
+    ct "...with the most Swag."
 
     #Animation: Teleport
 
@@ -411,7 +413,7 @@ label Swag_start:
 
     ss "These chains I have collected from Soulja Boys all over."
 
-    ss "I gain Swag from Soulja boys I defeat in Swag battles."
+    ss "I gain Swag from Soulja boys I defeat in Swag Battles."
 
     ss "But the thing is…"
 
@@ -427,7 +429,7 @@ label Swag_start:
 
     menu: #The three choices will go hard, medium, then easy for game difficulty
 
-        "I have more Swag then you ever will.":
+        "I have more Swag than you ever will.":
 
             $ set_difficulty(8)
 
@@ -469,7 +471,9 @@ label o4_3:
 
     p "I like your chains."
 
-    ss "I see you understand proper Swag, this is good."
+    ss "I see you understand proper Swag."
+
+    ss "This is good."
 
     ss "But now, we must do Swag Battle!"
 
@@ -517,7 +521,7 @@ label win_4:
 
     s "I am SWAG, the force of Swag that controls this world."
 
-    s "And this world... is now your world."
+    s "And this world is now your world."
 
     s "You may destroy it."
 
@@ -544,7 +548,7 @@ label o5_1:
 
     s "I see..."
 
-    s "Well it is your choice."
+    s "Well, it is your choice."
 
     s "I will be sorry to see this world go."
 
@@ -569,18 +573,18 @@ label o5_2:
     scene bg_bedroom at truecenter:
         zoom 1.7
 
-    m "Goodnight sweetie, make sure you dont stay up too late listening to music."
+    m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
-    t "Did that really just happen?"
+    t "{i}Did that really just happen?{/i}"
 
-    t "Has no time passed?"
+    t "{i}Has no time passed?{/i}"
 
-    t "I should probably turn off the music..."
+    t "{i}I should probably turn off the music...{/i}"
 
     scene bg_black:
         zoom 2
 
-    t "and get to bed."
+    t "{i}and get to bed.{/i}"
 
     #END
 
@@ -606,7 +610,7 @@ label o5_3:
 
         np "I will be Swag [new_name] Soulja Boy."
 
-        s "This is good"
+        s "This is good."
 
         s "You shall rule over this world as the most Swag of all Soulja Boys."
 
@@ -635,13 +639,15 @@ label lose_4:
 
     ss "I have triumphed once again!"
 
-    ss "However, your Swag you possess is rare, and should not be wasted."
+    ss "However, the Swag you possess is rare, and it should \nnot be wasted."
 
-    ss "I shall present you with a choice, you may return to your world"
+    ss "I shall present you with a choice:"
 
-    ss "or"
+    ss "You may return to your world..."
 
-    ss "You may remain on Soulja Boy world, and become a Soulja Boy yourself."
+    ss "...or"
+
+    ss "You may remain in Soulja Boy world, and become a \nSoulja Boy yourself."
 
     ss "The choice is yours."
 
@@ -657,13 +663,13 @@ label lose_4:
 
 label o6_1:
 
-    ss "A good choice, I would not have liked seeing your Swag go to waste."
+    ss "A good choice, I would not have liked seeing your Swag \ngo to waste."
 
-    ss "Before I send you back down to Soulja Boy world, you must have a title."
+    ss "Before I send you back down to Soulja Boy world, you must \nhave a title."
 
     ss "What will be your new name?"
 
-    $ new_name_2 = renpy.input("You're new name will be _____ Soulja Boy, fill in the gap.")
+    $ new_name_2 = renpy.input("Your new name will be _____ Soulja Boy, fill in the gap.")
 
     $ new_name_2 = new_name_2.strip()
 
@@ -671,7 +677,7 @@ label o6_1:
 
     np2 "I will be [new_name_2] Soulja Boy"
 
-    ss "Excellent choice, I will now send you back down to Soulja Boy World."
+    ss "Excellent choice, I will now send you back down to \nSoulja Boy World."
 
     ss "Are you ready?"
 
@@ -692,18 +698,18 @@ label o6_2:
     scene bg_bedroom at truecenter:
         zoom 1.7
 
-    m "Goodnight sweetie, make sure you dont stay up too late listening to music."
+    m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
-    t "Did that really just happen?"
+    t "{i}Did that really just happen?{/i}"
 
-    t "Has no time passed?"
+    t "{i}Has no time passed?{/i}"
 
-    t "I should probably turn off the music..."
+    t "{i}I should probably turn off the music...{/i}"
 
     scene bg_black:
         zoom 2
 
-    t "and get to bed."
+    t "{i}and get to bed.{/i}"
 
     #END
 
