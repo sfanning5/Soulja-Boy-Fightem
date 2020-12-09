@@ -6,6 +6,7 @@ init python:
 
     import math
     import pygame
+    import copy
 
     defeat = False
     victory = False
@@ -21,12 +22,36 @@ init python:
 
     dx = 0
     dy = 0
-    player_controls = {
+
+    wasd_controls = {
         pygame.K_w : [0, -1, False],
         pygame.K_s : [0, 1, False],
         pygame.K_a : [-1, 0, False],
         pygame.K_d : [1, 0, False]
     }
+
+    ijkl_controls = {
+        pygame.K_i : [0, -1, False],
+        pygame.K_k : [0, 1, False],
+        pygame.K_j : [-1, 0, False],
+        pygame.K_l : [1, 0, False]
+    }
+
+    arrow_controls = {
+        pygame.K_UP : [0, -1, False],
+        pygame.K_DOWN : [0, 1, False],
+        pygame.K_LEFT : [-1, 0, False],
+        pygame.K_RIGHT : [1, 0, False]
+    }
+
+    control_schemes = {
+        "WASD" : wasd_controls,
+        "IJKL" : ijkl_controls,
+        "Arrow keys" : arrow_controls
+    }
+
+    current_control_scheme = "WASD" # WASD controls by default
+    player_controls = copy.deepcopy(control_schemes[current_control_scheme]);
 
     projectiles_spawned = 0
     projectiles = []
@@ -77,12 +102,7 @@ init python:
         dy = 0
         player_pos = Vector2(-1, -1)
 
-        player_controls = {
-            pygame.K_w : [0, -1, False],
-            pygame.K_s : [0, 1, False],
-            pygame.K_a : [-1, 0, False],
-            pygame.K_d : [1, 0, False]
-        }
+        player_controls = copy.deepcopy(control_schemes[current_control_scheme]); # sets controls, and stops original copy from being edited while in game
 
     def countdown(st, at, length):
         global victory
@@ -128,9 +148,14 @@ init python:
 
             self.player_image = renpy.displayable("Props/pr_player.png")
 
+            self.last_time_rendered = 0 # The at value st the last time the minigame was rendered, used in calculating delta_time
+
         def render(self, width, height, st, at):
             global player_pos
             global defeat
+
+            delta_time_modifier = (st - self.last_time_rendered) * 143 # the game was tested initially at 143 fps, so this modifier makes everything move as if it was at 143fps
+            self.last_time_rendered = st
 
             if player_pos.x == -1 and player_pos.y == -1:
                 player_pos = Vector2(width/2, height/2)
@@ -153,7 +178,7 @@ init python:
 
             # Moving + Rendering all projectiles
             for projectile in projectiles:
-                projectile.move()
+                projectile.move(delta_time_modifier)
                 render_projectile(projectile)
 
                 # Checks for collisions
@@ -164,8 +189,8 @@ init python:
                     renpy.timeout(0)
 
             # Moving + rendering player
-            player_pos.x += dx * player_speed
-            player_pos.y += dy * player_speed
+            player_pos.x += dx * player_speed * delta_time_modifier
+            player_pos.y += dy * player_speed * delta_time_modifier
 
             # Applying movement boundaries
             VERTICAL_PADDING = 50
@@ -186,7 +211,7 @@ init python:
             render.blit(pl, (player_pos.x - playersize_x/2, player_pos.y - playersize_y/2))
 
 
-            renpy.redraw(self, 0)
+            renpy.redraw(self, .1)
             return render
 
 
@@ -238,7 +263,7 @@ label start_minigame:
 
     "{b}{i}1{/b}{/i}"
 
-    "{b}{i}GO!!!{/b}{/i} (use WASD to move)"
+    "{b}{i}GO!!!{/b}{/i} (use [current_control_scheme] to move)"
 
     call screen minigame(minigame_duration)
 

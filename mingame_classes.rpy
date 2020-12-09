@@ -16,6 +16,9 @@ init python:
         def add_to(self, vector2):
             return Vector2(self.x + vector2.x, self.y + vector2.y)
 
+        def add_to(self, vector2, modifier):
+            return Vector2(self.x + (vector2.x * modifier), self.y + (vector2.y * modifier))
+
     class Projectile():
         alternating = False
         current_spawn_x = 0
@@ -40,8 +43,8 @@ init python:
             speed *= random.choice([1, -1])
             return speed
 
-        def move(self):
-            self.position = self.position.add_to(self.position_change)
+        def move(self, delta_time):
+            self.position = self.position.add_to(self.position_change, delta_time)
             self.rotation += self.rotation_speed
 
         # calculates what the alpha value of the projectile should be (this creates the fade in animation)
