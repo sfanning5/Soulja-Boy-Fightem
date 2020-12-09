@@ -33,7 +33,6 @@ label start:
 
     t "{i}I guess the phone is for me.{/i}"
 
-    #SOUND: Phone stops ringing
     #MUSIC: Instumental music plays
 
     show ch_distance at left
@@ -44,6 +43,8 @@ label start:
     t "{i}What is happening?!{/i}"
 
     ld "You look confused. What's your name?"
+
+    stop sound
 
     $ player_name = renpy.input("What is your name?")
 
