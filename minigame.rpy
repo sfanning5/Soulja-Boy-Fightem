@@ -8,6 +8,8 @@ init python:
     import pygame
     import copy
 
+    ironman_mode = False
+
     defeat = False
     victory = False
 
@@ -276,6 +278,9 @@ label start_minigame:
     else:
 
         "{b}{i}SHOCKING DEFEAT!{/b}{/i}"
+
+        if ironman_mode:
+            return False
 
         menu: #The three choices will go hard, medium, then easy for game difficulty
 

@@ -8,7 +8,42 @@ define q = Character("???")
 define s = Character("SWAG")
 define wins = 0
 
+screen say_at_top(msg):
+    window id "window":
+        vbox:
+            spacing 10
+            ypos -450
+            xalign .5
+            text msg
+
 label start:
+
+    scene bg_black at truecenter:
+        zoom 2
+
+    show screen say_at_top("How would you like to control your character during battle?")
+
+    menu:
+        "WASD":
+            $ current_control_scheme = "WASD"
+
+        "IJKL":
+            $ current_control_scheme = "IJKL"
+
+        "Arrow keys":
+            $ current_control_scheme = "Arrow keys"
+
+    hide screen say_at_top
+
+    show screen say_at_top("Would you like to allow yourself to retry battles?")
+    menu:
+        "Yes.":
+            $ ironman_mode = False
+
+        "I don't lose.":
+            $ ironman_mode = True
+
+    hide screen say_at_top
 
     scene bg_bedroom at truecenter:
         zoom 1.7
@@ -563,7 +598,8 @@ label o5_1:
     play sound mu_explode
     #ART: Fade to black
 
-    scene bg_black
+    scene bg_black:
+        zoom 2
 
     #END
 
