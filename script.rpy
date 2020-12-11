@@ -55,10 +55,10 @@ label start:
 
     hide screen say_at_top
 
-    play music "mu_crank.mp3"
-
+    play music "music/mu_laptop.ogg"
     scene bg_bedroom at truecenter:
-        zoom 1.7
+        zoom 1.05
+
     with dissolve
 
     #MUSIC: Music coming from laptop starts here
@@ -74,6 +74,7 @@ label start:
         zoom 1
     with dissolve
 
+    play music "music/mu_longDistance.ogg"
     play sound mu_ring
 
     t "{i}Where am I?{/i}"
@@ -215,8 +216,9 @@ label lose_1: #This technically wont show up until the game is implimented
 
 label pretty_boy_start:
 
+    play music "<from 2.5>music/mu_prettyBoy.ogg"
     scene bg_alley:
-        zoom 1.7
+        zoom 1
 
     show ch_pretty at center:
         zoom .2
@@ -339,8 +341,9 @@ label lose_2:
 
 label crank_that_start:
 
+    play music "<from 2.5>music/mu_crank.mp3"
     scene bg_club at truecenter:
-        zoom 1.7
+        zoom 1
 
     show ch_crank at truecenter:
         zoom .7
@@ -453,8 +456,9 @@ label lose_3:
 
 label Swag_start:
 
+    play music "<from .5>music/mu_Swag.ogg"
     scene bg_space at truecenter:
-        zoom 1.6
+        zoom 1
 
     show ch_swag:
         zoom .8
@@ -565,7 +569,7 @@ label win_4:
     ss "My swaaaaaaaagggggggg!"
 
     scene bg_space at truecenter:
-        zoom 1.6
+        zoom 1
     with dissolve
 
     p "Hello?"
@@ -630,8 +634,9 @@ label o5_2:
 
     #ANIMATION: Teleport
 
+    play music "<from 20>music/mu_laptop.ogg"
     scene bg_bedroom at truecenter:
-        zoom 1.7
+        zoom 1.05
     with dissolve
 
     m "Goodnight sweetie, make sure you don't stay up too late listening to music."
@@ -757,8 +762,9 @@ label o6_2:
 
     #ANIMATION: Teleport
 
+    play music "<from 20>music/mu_laptop.ogg"
     scene bg_bedroom at truecenter:
-        zoom 1.7
+        zoom 1.05
 
     m "Goodnight sweetie, make sure you don't stay up too late listening to music."
 
@@ -780,4 +786,7 @@ label o6_2:
 
 label end:
 
+    scene bg_credits
+    with dissolve
+    with Pause(30)
     return
