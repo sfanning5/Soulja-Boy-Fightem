@@ -41,7 +41,7 @@ init python:
             self.position_change.x *= projectile_speed
             self.position_change.y *= projectile_speed
             self.img = renpy.displayable(Projectile.graphics[current_level]) # Sets this projectile's graphics
-            self.zoom_amount = .9
+            self.zoom_amount = .75
             self.fade_distance = 0 # The distance from the start at which the fade in animation will end
 
         def determine_rotation_speed(self):
