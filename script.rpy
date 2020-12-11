@@ -8,6 +8,16 @@ define q = Character("???")
 define s = Character("SWAG")
 define wins = 0
 
+init python:
+    def capitalize_name(name):
+        name = name.strip()
+        if name.islower():
+            name = name.title()
+        temp = name.split(" ")
+        temp = filter(lambda x: x.strip(), temp)
+        name = " ".join(temp)
+        return name
+
 screen say_at_top(msg):
     window id "window":
         vbox:
@@ -45,6 +55,8 @@ label start:
 
     hide screen say_at_top
 
+    play music "mu_crank.mp3"
+
     scene bg_bedroom at truecenter:
         zoom 1.7
     with dissolve
@@ -70,7 +82,8 @@ label start:
 
     #MUSIC: Instumental music plays
 
-    show ch_distance at left
+    show ch_distance at left:
+        zoom 1.3
     with dissolve
 
     ld "Looks like we have our next challenger!"
@@ -83,7 +96,7 @@ label start:
 
     $ player_name = renpy.input("What is your name?")
 
-    $ player_name = player_name.strip()
+    $ player_name = capitalize_name(player_name)
 
     define p = Character("[player_name]")
 
@@ -159,6 +172,7 @@ label o1_3:
 label game_1:
     #GAME: This is where the first game should take place, the following dialogue happens after the game
 
+    $ current_level = 0
     call start_minigame from _call_start_minigame
 
     if _return:
@@ -284,6 +298,7 @@ label o2_3:
 label game_2:
     #GAME: This is game 2
 
+    $ current_level = 1
     call start_minigame from _call_start_minigame_1
 
     if _return:
@@ -393,6 +408,7 @@ label o3_3:
 label game_3:
     #GAME: This is game 3
 
+    $ current_level = 2
     call start_minigame from _call_start_minigame_2
 
     if _return:
@@ -425,7 +441,7 @@ label lose_3:
 
     ct "Your moves aren't slick. I don't know if you have what it takes...."
 
-    ct "...but I gotta send you up to the Swag Soulja Boy, the last of us Soulja Boys..."
+    ct "...but I gotta send you up to the Swag Soulja Boy, the last\n(and largest) of us Soulja Boys..."
 
     #ART: Zoom in
 
@@ -440,8 +456,8 @@ label Swag_start:
     scene bg_space at truecenter:
         zoom 1.6
 
-    show ch_swag at center:
-        zoom .513
+    show ch_swag:
+        zoom .8
     with dissolve
 
     t "{i} Wow he is so big he doesn't even fit on screen. {/i}"
@@ -523,6 +539,7 @@ label o4_3:
 label game_4:
     #GAME: This is game 4
 
+    $ current_level = 3
     call start_minigame from _call_start_minigame_3
 
     if _return:
@@ -649,7 +666,7 @@ label o5_3:
 
         $ new_name = renpy.input("You're new name will be Swag _____ Soulja Boy, fill in the gap.")
 
-        $ new_name = new_name.strip()
+        $ new_name = captialize_name(new_name)
 
         define np = Character("Swag [new_name] Soulja Boy")
 
@@ -716,7 +733,7 @@ label o6_1:
 
     $ new_name_2 = renpy.input("Your new name will be _____ Soulja Boy, fill in the gap.")
 
-    $ new_name_2 = new_name_2.strip()
+    $ new_name_2 = capitalize_name(new_name_2)
 
     define np2 = Character("[new_name_2] Soulja Boy")
 

@@ -25,6 +25,13 @@ init python:
         VERTICAL_PADDING = 10
         HORIZONTAL_PADDING = 150
 
+        graphics = [
+        "Props/pr_phone.png",
+        "Props/pr_shades.png",
+        "Props/pr_hat.png",
+        "Props/pr_chain.png"
+        ]
+
         def __init__(self):
             self.position = Vector2(200, -200)
             self.rotation = 0 # This projectile's rotation in degrees
@@ -33,8 +40,8 @@ init python:
             self.position_change = Vector2(0, 1) # The change in position every frame
             self.position_change.x *= projectile_speed
             self.position_change.y *= projectile_speed
-            self.img = renpy.displayable("Props/pr_souljaCoin.png")
-            self.zoom_amount = .14
+            self.img = renpy.displayable(Projectile.graphics[current_level]) # Sets this projectile's graphics
+            self.zoom_amount = .9
             self.fade_distance = 0 # The distance from the start at which the fade in animation will end
 
         def determine_rotation_speed(self):

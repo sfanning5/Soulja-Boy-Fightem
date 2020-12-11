@@ -8,6 +8,7 @@ init python:
     import pygame
     import copy
 
+    current_level = 0
     ironman_mode = False
 
     defeat = False
@@ -259,6 +260,8 @@ screen minigame(duration):
 
 label start_minigame:
 
+    $ _skipping = False # Disables skipping during the minigame
+
     "{b}{i}ENGAGING SWAG BATTLE IN 3{/b}{/i}"
 
     "{b}{i}2{/b}{/i}"
@@ -266,8 +269,9 @@ label start_minigame:
     "{b}{i}1{/b}{/i}"
 
     "{b}{i}GO!!!{/b}{/i} (use [current_control_scheme] to move)"
-
     call screen minigame(minigame_duration)
+
+    $ _skipping = True # Re-enables skipping
 
     if _return:
 
