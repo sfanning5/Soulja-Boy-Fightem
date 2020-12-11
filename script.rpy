@@ -87,13 +87,13 @@ label start:
         zoom 1.3
     with dissolve
 
+    stop sound
+
     ld "Looks like we have our next challenger!"
 
     t "{i}What is happening?!{/i}"
 
     ld "You look confused. What's your name?"
-
-    stop sound
 
     $ player_name = renpy.input("What is your name?")
 
